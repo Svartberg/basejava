@@ -3,37 +3,37 @@
  */
 public class ArrayStorage {
     private final Resume[] storage = new Resume[10000];
-    private int storageLastValue = 0;
+    private int lastResumePosition;
 
     void clear() {
-        for (int i = 0; i < storageLastValue; i++) {
+        for (int i = 0; i < lastResumePosition; i++) {
             storage[i] = null;
         }
-        storageLastValue = 0;
+        lastResumePosition = 0;
     }
 
     void save(Resume r) {
-        if (storageLastValue < 10000) {
-            storage[storageLastValue] = r;
-            storageLastValue++;
+        if (lastResumePosition < storage.length) {
+            storage[lastResumePosition] = r;
+            lastResumePosition++;
         }
     }
 
     Resume get(String uuid) {
-        Resume getReturn = null;
-        for (int i = 0; i < storageLastValue; i++) {
+        Resume resume = null;
+        for (int i = 0; i < lastResumePosition; i++) {
             if (storage[i].toString().equals(uuid))
-                getReturn = storage[i];
+                resume = storage[i];
         }
-        return getReturn;
+        return resume;
     }
 
     void delete(String uuid) {
-        for (int i = 0; i < storageLastValue; i++) {
+        for (int i = 0; i < lastResumePosition; i++) {
             if (storage[i].toString().equals(uuid)) {
-                System.arraycopy(storage, i + 1, storage, i, storageLastValue - i);
-                storage[storageLastValue] = null;
-                storageLastValue--;
+                System.arraycopy(storage, i + 1, storage, i, lastResumePosition - i);
+                storage[lastResumePosition] = null;
+                lastResumePosition--;
                 break;
             }
         }
@@ -43,12 +43,12 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        Resume[] storageCopy = new Resume[storageLastValue];
-        System.arraycopy(storage, 0, storageCopy, 0, storageLastValue);
+        Resume[] storageCopy = new Resume[lastResumePosition];
+        System.arraycopy(storage, 0, storageCopy, 0, lastResumePosition);
         return storageCopy;
     }
 
     int size() {
-        return storageLastValue;
+        return lastResumePosition;
     }
 }
