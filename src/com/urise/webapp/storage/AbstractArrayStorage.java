@@ -1,13 +1,16 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.exception.ExistStorageException;
+import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
 public abstract class AbstractArrayStorage implements Storage {
-    protected  static final int STORAGE_LIMIT = 100000;
+    protected static final int STORAGE_LIMIT = 10;
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
-    protected  int lastResumePosition;
+    protected int lastResumePosition;
 
     public int size() {
         return lastResumePosition;
@@ -21,7 +24,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public void update(Resume r) {
         int index = getIndex(r.getUuid());
         if (index < 0) {
-            System.out.println("Resume " + r.getUuid() + " not found;");
+            throw new NotExistStorageException(r.getUuid());
         } else {
             storage[index] = r;
         }
@@ -29,10 +32,10 @@ public abstract class AbstractArrayStorage implements Storage {
 
     public void save(Resume r) {
         int index = getIndex(r.getUuid());
-        if (getIndex(r.getUuid()) != -1) {
-            System.out.println("Resume " + r.getUuid() + " already exists;");
-        } else if (lastResumePosition >= STORAGE_LIMIT) {
-            System.out.println("Storage overflow");
+        if (getIndex(r.getUuid()) >= 0) {
+            throw new ExistStorageException(r.getUuid());
+        } else if (lastResumePosition == STORAGE_LIMIT) {
+            throw new StorageException("Storage overflow", r.getUuid());
         } else {
             insertResume(r, index);
             lastResumePosition++;
@@ -42,7 +45,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public void delete(String uuid) {
         int index = getIndex(uuid);
         if (index < 0) {
-            System.out.println("Resume " + uuid + " not found;");
+            throw new NotExistStorageException(uuid);
         } else {
             deleteResume(index);
             storage[lastResumePosition] = null;
@@ -52,8 +55,7 @@ public abstract class AbstractArrayStorage implements Storage {
     public Resume get(String uuid) {
         int index = getIndex(uuid);
         if (index < 0) {
-            System.out.println("Resume " + uuid + " not found;");
-            return null;
+            throw new NotExistStorageException(uuid);
         }
         return storage[index];
     }
