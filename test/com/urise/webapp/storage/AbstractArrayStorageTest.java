@@ -26,6 +26,10 @@ public abstract class AbstractArrayStorageTest {
     private static final String UUID_4 = "uuid4";
     private static final Resume RESUME_4 = new Resume(UUID_4);
 
+    private static final String UUID_5 = "uuid4";
+    private static final Resume RESUME_5 = new Resume(UUID_5);
+
+
     protected AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
     }
@@ -115,7 +119,8 @@ public abstract class AbstractArrayStorageTest {
 
     @Test(expected = NotExistStorageException.class)
     public void updateNotExist() throws Exception {
-        storage.get("dummy");
+        Resume newResume = new Resume(UUID_5);
+        storage.update(newResume);
     }
 
     private void assertSize(int size) {

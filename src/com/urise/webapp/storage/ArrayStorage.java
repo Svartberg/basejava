@@ -18,12 +18,13 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected int getIndex(String uuid) {
+    protected Integer getSearchID(String uuid) {
         for (int i = 0; i < lastResumePosition; i++) {
             if (uuid.equals(storage[i].getUuid())) {
                 return i;
             }
         }
-        return -1;
+        //Возвращает значение из кэша, не создавая новый объект;
+        return Integer.valueOf(-1);
     }
 }
