@@ -11,7 +11,7 @@ public class ListStorage extends AbstractStorage {
 
 
     @Override
-    protected Object getSearchID(String uuid) {
+    protected Integer getSearchID(String uuid) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getUuid().equals(uuid)) {
                 return i;
