@@ -1,6 +1,6 @@
 package com.urise.webapp;
 
-import com.urise.webapp.model.SectionType;
+import com.urise.webapp.model.TypeSection;
 
 public class TestSingleton {
     private static TestSingleton instance;
@@ -20,7 +20,7 @@ public class TestSingleton {
         Singleton instance = Singleton.valueOf("INSTANCE");
         System.out.println(instance.ordinal());
 
-        for (SectionType type : SectionType.values()) {
+        for (TypeSection type : TypeSection.values()) {
             System.out.println(type.getTitle());
         }
     }

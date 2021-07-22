@@ -10,7 +10,7 @@ import java.util.Objects;
  */
 public class Resume implements Comparable<Resume>{
 
-    private final Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
+    private final Map<TypeSection, Section> sections = new EnumMap<>(TypeSection.class);
 
     private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
 
@@ -33,18 +33,20 @@ public class Resume implements Comparable<Resume>{
         return uuid;
     }
 
-    public Section getSection(SectionType type) {
+    public Section getSection(TypeSection type) {
         return sections.get(type);
     }
 
     public String getContact(ContactType type) {
         return contacts.get(type);
     }
+
     public void addContact(ContactType type, String value) { contacts.put(type, value); }
 
-    public void addSections(SectionType st, Section s){
-        sections.put(st, s);
+    public void addSection(TypeSection type, Section section) {
+        sections.put(type, section);
     }
+
     @Override
     public String toString() {
         return uuid + '(' + fullName + ')';

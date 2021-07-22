@@ -2,7 +2,8 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
-import com.urise.webapp.model.Resume;
+import com.urise.webapp.model.*;
+import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Assert;
@@ -27,7 +28,7 @@ public abstract class AbstractStorageTest {
     private static final String UUID_4 = "uuid4";
     private static final Resume RESUME_4 = new Resume(UUID_4, "Name_4");
 
-    private static final String UUID_5 = "uuid4";
+    //private static final String UUID_5 = "uuid4";
     //private static final Resume RESUME_5 = new Resume(UUID_5, "Name_5");
 
 

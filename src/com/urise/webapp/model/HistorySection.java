@@ -1,11 +1,17 @@
 package com.urise.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-public class SectionHistory extends Section {
+public class HistorySection extends Section {
     private final List<Organization> history;
 
-    public SectionHistory(List<Organization> history) {
+    public HistorySection(Organization... organizations) {
+        this(Arrays.asList(organizations));
+    }
+    public HistorySection(List<Organization> history) {
+        Objects.requireNonNull(history, "organizations must not be null");
         this.history = history;
     }
 
@@ -23,7 +29,7 @@ public class SectionHistory extends Section {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SectionHistory that = (SectionHistory) o;
+        HistorySection that = (HistorySection) o;
 
         return history.equals(that.history);
     }

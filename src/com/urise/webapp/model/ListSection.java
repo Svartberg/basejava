@@ -1,11 +1,17 @@
 package com.urise.webapp.model;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-public class SectionList  extends Section {
+public class ListSection extends Section {
     private final List<String> items;
 
-    public SectionList(List<String> items) {
+    public ListSection(String... items) {
+        this(Arrays.asList(items));
+    }
+    public ListSection(List<String> items) {
+        Objects.requireNonNull(items, "items must not be null");
         this.items = items;
     }
 
@@ -23,7 +29,7 @@ public class SectionList  extends Section {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SectionList that = (SectionList) o;
+        ListSection that = (ListSection) o;
 
         return items.equals(that.items);
 
