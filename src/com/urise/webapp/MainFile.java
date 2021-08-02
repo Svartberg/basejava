@@ -30,20 +30,20 @@ public class MainFile {
         } catch (IOException e) {
             throw  new RuntimeException(e);
         }
-        printDeepDirectory(dir);
+        printDeepDirectory(dir, "");
     }
 
     //Рекурсивный обход и вывод имени файлов в каталогах и подкаталогах
-    public static void printDeepDirectory(File dir) {
+    public static void printDeepDirectory(File dir, String recursiveInference) {
         File[] files = dir.listFiles();
 
         if (files != null) {
             for (File file : files) {
                 if (file.isFile()) {
-                    System.out.println("File: " + file.getName());
+                    System.out.println(recursiveInference + "File: " + file.getName());
                 } else if (file.isDirectory()) {
-                    System.out.println("Directory: " + file.getName());
-                    printDeepDirectory(file);
+                    System.out.println(recursiveInference + "Directory: " + file.getName());
+                    printDeepDirectory(file, recursiveInference + " ");
                 }
             }
         }
