@@ -5,6 +5,7 @@ import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.ContactType;
 import com.urise.webapp.model.Resume;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,63 +18,14 @@ import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static com.urise.webapp.storage.TestData.*;
+
 
 public abstract class AbstractStorageTest {
 
     protected static final File STORAGE_DIR = Config.get().getStorageDir();
 
     protected Storage storage;
-
-    private static final String UUID_1 = UUID.randomUUID().toString();;
-    private static final String UUID_2 = UUID.randomUUID().toString();;
-    private static final String UUID_3 = UUID.randomUUID().toString();;
-    private static final String UUID_4 = UUID.randomUUID().toString();;
-
-    private static final Resume R1;
-    private static final Resume R2;
-    private static final Resume R3;
-    private static final Resume R4;
-    //private static final String UUID_5 = "uuid4";
-    //private static final Resume RESUME_5 = new Resume(UUID_5, "Name_5");
-
-    static {
-        R1 = new Resume(UUID_1, "Name1");
-        R2 = new Resume(UUID_2, "Name2");
-        R3 = new Resume(UUID_3, "Name3");
-        R4 = new Resume(UUID_4, "Name4");
-
-        R1.addContact(ContactType.MAIL, "mail1@ya.ru");
-        R1.addContact(ContactType.PHONE, "79119943311");
-
-        R4.addContact(ContactType.PHONE, "79118762211");
-        R4.addContact(ContactType.SKYPE, "TestSkype");
-
-        /*R1.addContact(ContactType.MAIL, "mail1@ya.ru");
-        R1.addContact(ContactType.PHONE, "11111");
-        R1.addSection(TypeSection.OBJECTIVE, new TextSection("Objective1"));
-        R1.addSection(TypeSection.PERSONAL, new TextSection("Personal data"));
-        R1.addSection(TypeSection.ACHIEVEMENT, new ListSection("Achivment11", "Achivment12", "Achivment13"));
-        R1.addSection(TypeSection.QUALIFICATIONS, new ListSection("Java", "SQL", "JavaScript"));
-        R1.addSection(TypeSection.EXPERIENCE,
-                new HistorySection(
-                        new Organization("Organization11", "http://Organization11.ru",
-                                new Organization.Position(2005, Month.JANUARY, "position1", "content1"),
-                                new Organization.Position(2001, Month.MARCH, 2005, Month.JANUARY, "position2", "content2"))));
-        R1.addSection(TypeSection.EDUCATION,
-                new HistorySection(
-                        new Organization("Institute", null,
-                                new Organization.Position(1996, Month.JANUARY, 2000, Month.DECEMBER, "aspirant", null),
-                                new Organization.Position(2001, Month.MARCH, 2005, Month.JANUARY, "student", "IT facultet")),
-                        new Organization("Organization12", "http://Organization12.ru")));
-        R2.addContact(ContactType.SKYPE, "skype2");
-        R2.addContact(ContactType.PHONE, "22222");
-        R1.addSection(TypeSection.EXPERIENCE,
-                new HistorySection(
-                        new Organization("Organization2", "http://Organization2.ru",
-                                new Organization.Position(2015, Month.JANUARY, "position1", "content1"))));*/
-    }
-
-
 
 
     protected AbstractStorageTest(Storage storage) {
