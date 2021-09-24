@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class Config {
-    protected static final File PROPS = new File("basejava\\config\\resumes.properties");
+    protected static final File PROPS = new File(getHome(),"basejava\\config\\resumes.properties");
     private static final Config INSTANCE = new Config();
 
     private final File storageDir;
@@ -36,5 +36,14 @@ public class Config {
     }
     public Storage getStorage() {
         return storage;
+    }
+
+    private static File getHome() {
+        String home = System.getProperty("homeDir");
+        File homeDir = new File(home == null ? "." : home);
+        if (!homeDir.isDirectory()) {
+            throw new IllegalStateException(homeDir + " is not directory");
+        }
+        return homeDir;
     }
 }
