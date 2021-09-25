@@ -17,9 +17,18 @@ import java.util.Objects;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Resume implements Comparable<Resume>, Serializable {
     private static final long serialVersionUID = 1L;
+    public static final Resume EMPTY = new Resume();
+
+    static {
+        EMPTY.setSection(TypeSection.OBJECTIVE, TextSection.EMPTY);
+        EMPTY.setSection(TypeSection.PERSONAL, TextSection.EMPTY);
+        EMPTY.setSection(TypeSection.ACHIEVEMENT, ListSection.EMPTY);
+        EMPTY.setSection(TypeSection.QUALIFICATIONS, ListSection.EMPTY);
+        EMPTY.setSection(TypeSection.EXPERIENCE, new HistorySection(Organization.EMPTY));
+        EMPTY.setSection(TypeSection.EDUCATION, new HistorySection(Organization.EMPTY));
+    }
 
     private final Map<TypeSection, Section> sections = new EnumMap<>(TypeSection.class);
-
     private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
 
     // Unique identifier
@@ -47,6 +56,10 @@ public class Resume implements Comparable<Resume>, Serializable {
         return fullName;
     }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public Map<ContactType, String> getContacts() {
         return contacts;
     }
@@ -63,9 +76,9 @@ public class Resume implements Comparable<Resume>, Serializable {
         return contacts.get(type);
     }
 
-    public void addContact(ContactType type, String value) { contacts.put(type, value); }
+    public void setContact(ContactType type, String value) { contacts.put(type, value); }
 
-    public void addSection(TypeSection type, Section section) {
+    public void setSection(TypeSection type, Section section) {
         sections.put(type, section);
     }
 
