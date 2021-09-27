@@ -13,6 +13,41 @@ footer {
     margin: 20px 0;
 }
 
+table {
+    width: 90%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+#t01 tr:nth-child(even) {
+    background-color: #eee;
+}
+
+#t01 tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+#t01 th {
+    background-color: cornflowerblue;
+    color: white;
+    text-align: center;
+}
+
+.no-border {
+    border: 0px;
+    margin: 35px 75px;
+    vertical-align: top;
+    padding: 5px;
+}
+
 dl {
     background: none repeat scroll 0 0 #FAFAFA;
     margin: 8px 0;
@@ -32,10 +67,16 @@ dd {
 
 h2, h3 {
     margin: 15px 0 5px;
+    text-indent: 30px;
 }
 
 li {
-    margin: 15px 0;
+    margin: 5px 55px 0px 55px;
+    text-align: justify;
+}
+
+input {
+    margin: 1px;
 }
 
 a[href^="skype:"] {
@@ -61,4 +102,17 @@ a[href^="https://www.linkedin.com"] {
 a[href*="github."] {
     padding-left: 20px !important;
     background: url(../img/gh.png) no-repeat center left;
+}
+.hr-shadow {
+    margin: 20px 10px;
+    padding: 0;
+    height: 10px;
+    border: none;
+    border-top: 1px solid #333;
+    box-shadow: 0 10px 10px -10px #8c8b8b inset;
+}
+
+p {
+    margin: 5px 55px 0px 55px;
+    text-align: justify;
 }
